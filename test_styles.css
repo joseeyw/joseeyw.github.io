@@ -1,0 +1,43 @@
+
+.hs{
+	width:912px;
+	margin:auto;
+}
+
+.hs ul{
+	list-style:none;
+	margin:0;
+	padding:0;	
+}
+
+.hs ul li{
+	width:200px;
+	float:left;
+	margin-right:12px;
+}
+
+.showcase {
+  /* Set it so we could calculate the offsetLeft */
+  position: relative;
+  height: 197px;
+  width: 836px;
+  /* Add scroll-bars */
+  overflow: auto;
+  float:left;
+}
+
+.left-arrow{
+	width:22px;
+	height:197px;
+	display:block;
+	margin-right:10px;
+	float:left;
+}
+
+.right-arrow{
+	width:22px;
+	height:197px;
+	display:block;
+	margin-left:10px;
+	float:left;	
+}
