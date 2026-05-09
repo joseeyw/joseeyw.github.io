@@ -47,6 +47,21 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;cursor:none}
 
+
+/* HAMBURGER */
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobile-menu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow='';
+}
+
 /* CURSOR */
 .cur{position:fixed;width:8px;height:8px;background:var(--navy);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s,background .2s}
 .cur-ring{position:fixed;width:28px;height:28px;border:1px solid rgba(15,31,61,.25);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
@@ -159,6 +174,21 @@ footer{border-top:1px solid var(--border);padding:2.5rem 5rem;display:flex;justi
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:none;padding:.4rem;z-index:300;position:relative}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--navy);transition:all .3s;transform-origin:center}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* MOBILE MENU */
+.mobile-menu{position:fixed;inset:0;background:var(--white);z-index:250;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{font-family:var(--serif);font-size:2rem;color:var(--navy);text-decoration:none;font-style:italic;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-menu-footer{position:absolute;bottom:2.5rem;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
 /* RESPONSIVE */
 @media(max-width:860px){
   nav,section,footer{padding-left:1.8rem;padding-right:1.8rem}
@@ -170,6 +200,7 @@ footer{border-top:1px solid var(--border);padding:2.5rem 5rem;display:flex;justi
   .hero-row{flex-direction:column;align-items:flex-start}
   .hero-actions{flex-direction:row;flex-wrap:wrap;align-items:flex-start}
   .nav-r{display:none}
+  .hamburger{display:flex}
   footer{flex-direction:column;text-align:center}
 }
 </style>
@@ -182,7 +213,8 @@ footer{border-top:1px solid var(--border);padding:2.5rem 5rem;display:flex;justi
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="logo">JWW.</a>
-  <div class="nav-r">
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <div class="nav-r" id="nav-r">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
@@ -370,7 +402,32 @@ footer{border-top:1px solid var(--border);padding:2.5rem 5rem;display:flex;justi
   <div class="f-copy">Joseph Waweru Wambugu &copy; 2026</div>
 </footer>
 
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#domains" onclick="closeMenu()">Domains</a>
+  <div class="mobile-menu-footer">josephwmbg@gmail.com</div>
+</div>
+
 <script>
+
+/* HAMBURGER */
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobile-menu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow='';
+}
+
 /* CURSOR */
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
